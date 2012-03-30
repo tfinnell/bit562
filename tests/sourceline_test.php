@@ -10,10 +10,13 @@ class TestSourcelineObject extends UnitTestCase {
     }
 
     function testSourceLineIsComment() {
-        $line = '// this is a line comment';
-        $sourceline = new Sourceline($line);
-        $p = '/comment/';
-        $this->assertPattern($p, $sourceline->linetype);
+        $line[0] = '// this is a line comment';
+        $line[1] = '/* this starts a block comment';
+        foreach ($line as &$l) {
+            $sourceline = new Sourceline($l);
+            $p = '/comment/';
+            $this->assertPattern($p, $sourceline->linetype);
+        }
     }
 
     function testSourceLineIsCodeline() {

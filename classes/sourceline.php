@@ -9,7 +9,7 @@ class Sourceline {
     }
 
     function setLineType($line) {
-        $commentPattern = '/\/\//';
+        $commentPattern = '/^(\/\/|\/\*).*$/';
         if (preg_match($commentPattern, $line) > 0) {
             $this->linetype = 'comment';
         } else {
