@@ -1,6 +1,6 @@
 <?php
 class Sourceline {
-    public $linetype = '';
+    public $linetype;
     public $line;
 
     function __construct($line) {
