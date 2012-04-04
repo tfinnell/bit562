@@ -34,6 +34,8 @@ function lookUpInMaster( $oid ) {
 
 }
 
+function testDescription($query) {
 
+}
 
 ?>

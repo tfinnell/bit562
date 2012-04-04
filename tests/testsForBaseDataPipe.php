@@ -9,6 +9,11 @@ class BaseDataPipeTester extends UnitTestCase {
         $this->assertTrue(file_exists('../php/baseDataPipe.php'));
     }
 
+    function testBaseDataPipeObject() {
+        $datapipe = new BaseDataPipe("mapmgr", "datamanager");
+        $this->assertEqual(get_class($datapipe), BaseDataPipe);
+    }
+
 }
 
 ?>
