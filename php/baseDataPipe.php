@@ -19,7 +19,7 @@
  * the BaseDataPipe itself.
  **********************************************************************/
 
-include ('utilities.php');
+include_once ('utilities.php');
 
 class BaseDataPipe {
 
