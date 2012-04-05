@@ -17,12 +17,26 @@ class BaseDataPipeTester extends UnitTestCase {
             '/../php/baseDataPipe.php'));
     }
 
-    function testBaseDataPipeObject() {
-        $db_dsn = "mysql:host={$db_host};dbname={$db_database}";
+        
+    function testDataBaseManager() {
+        $db_dsn = "mysql:host=localhost;dbname=BIT561";
         $databaseManager = new DBManager(
-            $db_dsn, $db_username, $db_password);
-        $tableMapManager = new TableMapManager($databaseManager);
-        $datapipe = new BaseDataPipe($tableMapManager, $databaseManager);
+            $db_dsn, 'mutate', 'motlem420');
+        $databaseManager->open();
+        $this->assertEqual(get_class($databaseManager), DBManager);
+}
+    
+    function testDataBaseCredentials() {
+        $db_database = 'bit561';
+        $db_host = 'localhost';
+        $db_username = 'mutate';
+        $db_password = 'motlem420';
+
+        $this->assertTrue(file_exists(dirname(__FILE__).
+            '/../php/db_login.php'));
+        $this->assertNotNull($db_username);
+        $this->assertNotNull($db_password);
+        $this->assertNotNull($db_database);
     }
 
 }
