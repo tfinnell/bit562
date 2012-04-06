@@ -26,12 +26,11 @@ class TestOfTestsWebDisplay extends UnitTestCase {
         $dbManager = new DBManager(
             $db_dsn, $GLOBALS['db_username'], $GLOBALS['db_password']);
         $dbManager->open();
-        $dbManager->test('test string');
         $res = $dbManager->execute(
-            'SELECT COUNT(*)'.
-            'FROM information_schema.tables'.
-            'WHERE table_schema = '.$GLOBALS['db_database'].' '.
-            'AND table_name = \'test\''
+            'SELECT COUNT(*) '.
+            'FROM information_schema.tables '.
+            "WHERE table_schema = '{$GLOBALS['db_database']}' ".
+            "AND table_name = 'test';"
         );
         $this->assertEqual($res, 1);
     }
