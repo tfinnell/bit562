@@ -7,5 +7,6 @@ class AllTests extends TestSuite {
         $this->TestSuite('All tests');
         $this->addFile('testsForSourceLineObject.php');
         $this->addFile('testsForBaseDataPipe.php');
+        $this->addFile('testsForDatabase.php');
     }
 }
