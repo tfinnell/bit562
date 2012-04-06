@@ -14,12 +14,10 @@ class BaseDataPipeTester extends UnitTestCase {
     function setUp() {
     }
 
-
     function testForExistenceOfBasesDataPipe() {
         $this->assertTrue(file_exists(dirname(__FILE__).
             '/../php/baseDataPipe.php'));
     }
-
 
     function testBaseDataPipeObject() {
         $_REQUEST = array(
