@@ -10,7 +10,7 @@ require_once(dirname(__FILE__).'/../php/DataPipeFactory.php');
 class BaseDataPipeTester extends UnitTestCase {
 
     function setUp() {
-
+        
     }
     function testForExistenceOfBaseDataPipe() {
         $this->assertTrue(file_exists(dirname(__FILE__).
@@ -31,8 +31,17 @@ class BaseDataPipeTester extends UnitTestCase {
             $db_dsn, $GLOBALS['db_username'], $GLOBALS['db_password']);
         $databaseManager->open();
         $this->assertEqual(get_class($databaseManager), DBManager);
+    }
 
-}
+    function testTableMapManager() {
+        $_REQUEST['tableName'] = 'tablemaps';
+        $tableMapManager = new TableMapManager($databaseManager);
+        $this->assertEqual(get_class($tableMapManager), TableMapManager);
+    }
+
+    function testBaseDataPipe() {
+        $dataPipe = dataPipeFactory($tableMapManager, $databaseManager);
+    }
 }
 
 ?>
