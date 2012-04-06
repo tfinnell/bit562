@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/../php/DBManager.php');
 
 class DatabaseTester extends UnitTestCase {
 
-	function testDataBaseCredentials() {
+    function testDataBaseCredentials() {
         $this->assertNotNull($GLOBALS['db_username']);
         $this->assertNotNull($GLOBALS['db_password']);
         $this->assertNotNull($GLOBALS['db_database']);

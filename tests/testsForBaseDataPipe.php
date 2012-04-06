@@ -11,14 +11,14 @@ require_once(dirname(__FILE__).'/../php/DataPipeFactory.php');
 class BaseDataPipeTester extends UnitTestCase {
     private $dataPipe;
 
-    function setUp() {        
+    function setUp() {
     }
-    
+
 
     function testForExistenceOfBasesDataPipe() {
         $this->assertTrue(file_exists(dirname(__FILE__).
             '/../php/baseDataPipe.php'));
-    }    
+    }
 
 
     function testBaseDataPipeObject() {
