@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).'/simpletest/autorun.php');
 require_once(dirname(__FILE__).'/../php/baseDataPipe.php');
 require_once(dirname(__FILE__).'/../php/db_login.php');
 require_once(dirname(__FILE__).'/../php/DBManager.php');
+require_once(dirname(__FILE__).'/../php/tableMap.php');
 require_once(dirname(__FILE__).'/../php/tableMapManager.php');
 require_once(dirname(__FILE__).'/../php/DataPipeFactory.php');
 
@@ -32,14 +33,19 @@ class BaseDataPipeTester extends UnitTestCase {
         $this->assertEqual(get_class($databaseManager), DBManager);
     }
 
-#    function testBaseDataPipeObject() {
-#        $db_dsn = "mysql:host={$db_host};dbname={$db_database}";
-#        $databaseManager = new DBManager(
-#            $db_dsn, $db_username, $db_password);
-#        $databaseManager->open();
-#        $tableMapManager = new TableMapManager($databaseManager);
-#        $datapipe = new BaseDataPipe($tableMapManager, $databaseManager);
-#    }
+    function testBaseDataPipeObject() {
+        $_REQUEST = array(
+            'tableName' => 'users',
+            'tableMap'  => 'default'
+        );
+        $db_dsn = "mysql:host={$GLOBALS['db_host']};".
+            "dbname={$GLOBALS['db_database']}";
+        $databaseManager = new DBManager(
+            $db_dsn, $GLOBALS['db_username'], $GLOBALS['db_password']);
+        $databaseManager->open();
+        $tableMapManager = new TableMapManager($databaseManager);
+        $datapipe = new BaseDataPipe($tableMapManager, $databaseManager);
+    }
 
 }
 
