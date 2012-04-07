@@ -35,6 +35,7 @@ class BaseDataPipeTester extends UnitTestCase {
     }
 
     function testBaseDataPipeReturnsSomething() {
+        assertEqual(1,2);
     }
 }
 
