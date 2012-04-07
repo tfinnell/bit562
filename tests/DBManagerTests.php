@@ -21,6 +21,30 @@ class DBManagerTests extends UnitTestCase {
         
     }
     
+    public function testScrub() {
+        // DBManager constructor arguments don't matter for this test 
+        $DBManager = new DBManager("", "user", "pass");
+        $scrubbed = $DBManager->scrub("'");
+        $this->assertEquals($scrubbed, "%pos;", "Should scrub a lone apostrophe into %pos;");
+        $scrubbed = $DBManager->scrub("");
+        $this->assertEquals($scrubbed, "", "An empty input should return an empty output"); 
+    }
+    
+    public function testDeScrub() {
+        $DBManager = new DBManager("", "user", "pass");
+        $deScrubbed = $DBManager->deScrub("%pos;");
+        $this->assertEquals($deScrubbed, "'", "Should scrub a lone %pos; into '");
+        $deScrubbed = $DBManager->deScrub("");
+        $this->assertEquals($deScrubbed, "", "An empty input should return an empty output"); 
+    }
+    
+    public function testAssertToggle() {
+        $DBManager = new DBManager("", "user", "pass");
+        
+        
+        
+    }
+    
     
     
     
