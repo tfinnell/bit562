@@ -95,6 +95,18 @@ class DBManager {
              $testResult = $this->connection->query($testSQL);
          }
      }
+     
+     // Get all tests from the DB tests table.
+     // Returns an array of tests.
+     // Returns null on errors which neeed to be caught in implementation.
+     public function getDBTests() {
+        if(!$this->connection) return null;
+        $getTestsSQL = "SELECT * From test";
+        $result = $this->connection->query($getTestsSQL);
+        return $result->fetchAll();
+     }
+     
+     
 
      // "assert" sends a message to the test table in the database.  It also
      // sends whether the test was true or false.
