@@ -36,6 +36,10 @@ class BaseDataPipeTester extends UnitTestCase {
         $this->assertIsA($reflectedPipe, 'ReflectionObject');
         $sqlValue = $reflectedPipe->getConstant($sql);
         $this->assertNotNull($sqlValue);
+        $master_resultValue = $reflectedPipe->getConstant($master_result);
+        $this->assertNotNull($master_resultValue);
+        $getExecute = $reflectedPipe->getMethod('execute');
+        $this->assertNotNull($getExecute);
     }
 
     function testBaseDataPipeReturnsSomething() {
