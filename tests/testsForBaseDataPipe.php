@@ -10,9 +10,6 @@ require_once(dirname(__FILE__).'/../php/tableMapManager.php');
 class BaseDataPipeTester extends UnitTestCase {
     private $dataPipe;
 
-    function setUp() {
-    }
-
     function testForExistenceOfDataPipeFiles() {
         $this->assertTrue(file_exists(dirname(__FILE__).
             '/../php/baseDataPipe.php'));
@@ -35,6 +32,10 @@ class BaseDataPipeTester extends UnitTestCase {
         $this->assertIsA($tableMapManager, 'TableMapManager');
         $datapipe = new BaseDataPipe($tableMapManager, $databaseManager);
         $this->assertIsA($datapipe, 'BaseDataPipe');
+        $reflectedPipe = new ReflectionObject($datapipe);
+        $this->assertIsA($reflectedPipe, 'ReflectionObject');
+        $sqlValue = $reflectedPipe->getConstant($sql);
+        $this->assertNotNull($sqlValue);
     }
 
     function testBaseDataPipeReturnsSomething() {
