@@ -33,6 +33,9 @@ class BaseDataPipeTester extends UnitTestCase {
         $datapipe = new BaseDataPipe($tableMapManager, $databaseManager);
         $this->assertEqual(get_class($datapipe), BaseDataPipe);
     }
+
+    function testBaseDataPipeReturnsSomething() {
+    }
 }
 
 ?>
