@@ -6,7 +6,6 @@ require_once(dirname(__FILE__).'/../php/db_login.php');
 require_once(dirname(__FILE__).'/../php/DBManager.php');
 require_once(dirname(__FILE__).'/../php/tableMap.php');
 require_once(dirname(__FILE__).'/../php/tableMapManager.php');
-require_once(dirname(__FILE__).'/../php/DataPipeFactory.php');
 
 class BaseDataPipeTester extends UnitTestCase {
     private $dataPipe;
