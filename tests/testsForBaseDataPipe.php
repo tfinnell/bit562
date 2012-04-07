@@ -14,9 +14,11 @@ class BaseDataPipeTester extends UnitTestCase {
     function setUp() {
     }
 
-    function testForExistenceOfBasesDataPipe() {
+    function testForExistenceOfDataPipeFiles() {
         $this->assertTrue(file_exists(dirname(__FILE__).
             '/../php/baseDataPipe.php'));
+        $this->assertTrue(file_exists(dirname(__FILE__).
+            '/../php/tableMapManager.php'));
     }
 
     function testBaseDataPipeObject() {
@@ -28,14 +30,16 @@ class BaseDataPipeTester extends UnitTestCase {
             "dbname={$GLOBALS['db_database']}";
         $databaseManager = new DBManager(
             $db_dsn, $GLOBALS['db_username'], $GLOBALS['db_password']);
+        $this->assertIsA($databaseManager, 'DBManager');
         $databaseManager->open();
         $tableMapManager = new TableMapManager($databaseManager);
+        $this->assertIsA($tableMapManager, 'TableMapManager');
         $datapipe = new BaseDataPipe($tableMapManager, $databaseManager);
-        $this->assertEqual(get_class($datapipe), BaseDataPipe);
+        $this->assertIsA($datapipe, 'BaseDataPipe');
     }
 
     function testBaseDataPipeReturnsSomething() {
-        assertEqual(1,2);
+        $this->assertEqual(1,2);
     }
 }
 
