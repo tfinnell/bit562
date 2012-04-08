@@ -17,18 +17,34 @@ class TestOfTestsWebDisplay extends UnitTestCase {
 
     function testTestTableExistence() {
         $this->DBManager->open();
-        $res = $this->DBManager->execute(
+        $s = $this->DBManager->execute(
             'SELECT COUNT(*) '.
             'FROM information_schema.tables '.
             "WHERE table_schema = '{$GLOBALS['db_database']}' ".
             "AND table_name = 'test';"
         );
-        $this->assertEqual($res, 1);
+        $res = $s->fetch();
+        $this->assertEqual($res[0], "1");
     }
 
     function testDBManagerReturnsAllTests() {
         $this->DBManager->open();
-        $res = $this->DBManager->getAll
+        $countSel = $this->DBManager->execute('SELECT COUNT(*) FROM test');
+        $count = $countSel->fetchAll();
+        $res = $this->DBManager->getDBTests();
+        $this->assertEqual(count($res), $count[0][0]);
+    }
+
+    function testHtmlWrappedTest() {
+        $this->DBManager->open();
+        $res = $this->DBManager->getDBtests();
+        $row = $res[0];
+        $html = $this->DBManager->rowWrap($row);
+        $this->assertPattern('/<tr>.*<\/tr>/', $html);
+        $edReg = '/.*<td>'.$row['entryDate'].'<\/td>.*/';
+        $succReg = '/.*<td>'.$row['success'].'<\/td>.*/';
+        $this->assertPattern($edReg, $html);
+        $this->assertPattern($succReg, $html);
     }
 }
 
@@ -37,5 +53,5 @@ class TestOfTestWebDisplayWebTests extends WebTestCase {
         $this->get('http://localhost/bit562/php/dbtest.php');
         $this->assertResponse(200);
     }
-}
 
+}
