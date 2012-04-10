@@ -101,7 +101,7 @@ class DBManager {
      // Returns null on errors which neeed to be caught in implementation.
      public function getDBTests() {
         if(!$this->connection) return null;
-        $getTestsSQL = "SELECT * From test";
+        $getTestsSQL = "SELECT * From test ORDER BY entryDate DESC";
         $result = $this->connection->query($getTestsSQL);
         return $result->fetchAll();
      }
@@ -142,14 +142,7 @@ class DBManager {
          }
      }
 
-     public function rowWrap($row) {
-         $html = '<tr>'.
-             '<td>'.$row['entryDate'].'</td>'.
-             '<td>'.$row['description'].'</td>'.
-             '<td>'.$row['success'].'</td>'.
-             '</tr>';
-         return $html;
-     }
+     
 
 }
 
