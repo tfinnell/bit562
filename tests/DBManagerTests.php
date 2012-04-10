@@ -3,7 +3,25 @@
 // Since namespacing is restricted to the first line of the script, 
 //   it means that different mock outputs need to be refactored into separate files
 namespace NoMockPDONeeded;
+class PDO extends \PDO {
 
+    public function __construct($a, $b, $c) {
+        //empty 
+        echo "some bullshit";
+        return;
+    }
+
+    public function query($sql) {
+        return 'some text';
+        
+        /* pseudo-code for more accurate input/response cycle
+            if( $sql matches $pattern ) {
+                return realistic result
+            }
+        */       
+    }
+}
+//use ExpectedResults\PDO as PDO;
 //* This file is for Units Tests of the DBManager class.
 
 if(!class_exists('UnitTestCase')) include('simpletest/autorun.php');
@@ -108,37 +126,26 @@ class DBManagerTests extends \UnitTestCase {
    
 }
 
-namespace ExpectedResults;
+//namespace ExpectedResults;
 
 // I am trying to override the PDO object so that we can unit test the methods that need a database connection.
-class PDO extends \PDO {
 
-    public function __construct($a, $b, $c) {
-        //empty
-        return;
-    }
-
-    public function query($sql) {
-        return 'some text';
-        
-        /* pseudo-code for more accurate input/response cycle
-            if( $sql matches $pattern ) {
-                return realistic result
-            }
-        */       
-    }
-}
-use ExpectedResults\PDO as PDO;
 class DBManagerTestsWithExpectedResults extends \UnitTestCase {
     
     function testOpenAndExecute() {
         $DBManager = new \DBManager("","","");
         $DBManager->open();
+        /*
+        $pdo = new PDO('','','');
         $DBMReflection = new \ReflectionObject($DBManager);
+        $propertyConnection = $DBMReflection->getProperty("connection");
+        $propertyConnection->setAccessible(true);
+        $propertyConnection->setValue($DBManager, $pdo);*/
+        
         $connectionClass = $DBMReflection->getProperty("connection")->class;
-        $this->assertIsA($connectionClass, 'PDO', "after the open method, the connection should be a PDO object.");
+        $this->assertIsA($connectionClass, '\PDO', "after the open method, the connection should be a PDO object.");
         $result = $DBManager->execute("some sql");
-        $this->assertEqual($result, "some sql", "This test needs to be changed.");
+        $this->assertEqual($result, "some text", "This test needs to be changed.");
     }
     
 }
