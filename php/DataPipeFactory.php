@@ -4,6 +4,7 @@
 include('baseDataPipe.php');
 include('ProjectFileDataPipe.php');
 include('UsersDataPipe.php');
+include('CodeSnippetsDataPipe');
 
 // Any query doing basic CRUD will fall through to the default and use the BaseDataPipe.
 // These queries do one table and one record at a time.
@@ -14,18 +15,20 @@ function dataPipeFactory($mapManager, $dataManager) {
     $dataPipe = "";
     switch ( $_REQUEST['pipe'] ) {
 
-    case "projectfiles" :
-        $dataPipe = new ProjectFilesDataPipe($mapManager, $dataManager);
-        break;
+        case "projectfiles" :
+            $dataPipe = new ProjectFilesDataPipe($mapManager, $dataManager);
+            break;
 
-    case "users" :
-        $dataPipe = new UsersDataPipe($mapManager, $dataManager);
-        break;
+        case "codesnippets" :
+            $dataPipe = new CodeSnippetsDataPipe($mapManager, $dataManager);
 
-    default:
-        $dataPipe = new BaseDataPipe($mapManager, $dataManager);
+        case "users" :
+            $dataPipe = new UsersDataPipe($mapManager, $dataManager);
+            break;
+
+        default:
+            $dataPipe = new BaseDataPipe($mapManager, $dataManager);
     }
 
     return $dataPipe;
 }
-
