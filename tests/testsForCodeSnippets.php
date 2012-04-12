@@ -31,9 +31,9 @@ class TestsForCodeSnippets extends UnitTestCase {
             'tableMap'  => 'codeSnippets',
             'pipe'      => 'codesnippets'
         );
+        include(dirname(__FILE__).'/../php/db_login.php');
         $db_dsn = "mysql:host={$db_host};".
             "dbname={$db_database}";
-        include(dirname(__FILE__).'/../php/db_login.php');
         $db = new DBManager(
             $db_dsn, $db_username, $db_password);
         $db->open();
