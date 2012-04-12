@@ -20,17 +20,17 @@
 
     // Put all javascript variable declarations at the top of the function.
     var projectfiles = {
-      pipe : "projectfiles",
-      tableName : "projectfiles",
-      queryType : "select",
-      project : "BIT561"
+      pipe : 'codesnippets',
+      tableName : 'codeSnippets',
+      queryType : 'select',
+      code : '%'
     },
         filenames = [];
 
     // Load the data into structure, a jagged associative array.
     post(projectfiles);
 
-    filenames = $S.getType("projectfiles");
+    filenames = $S.getType("codeSnippets");
 
     // Set up the category selector.
     // Assumes the data objects have a category member.

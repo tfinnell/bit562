@@ -8,7 +8,7 @@ if ($_SESSION['loggedIn'] != true)
 
 <html>
   <head>
-    <title>Project Files</title>
+    <title>Code Snippets</title>
 
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -45,11 +45,11 @@ if ($_SESSION['loggedIn'] != true)
           <tr>
             <td width="150" valign="center">
               <font size="+1" style="bold">
-                <strong id="formTitle">Project Files</strong>
+                <strong id="formTitle">Code Snippets</strong>
               </font>
             </td>
             <td width="450" align="right" class="controlColor">
-              <strong>Select File Category:&nbsp;&nbsp;</strong>
+              <strong>Select Language:&nbsp;&nbsp;</strong>
               <select id="selectFileCategory" class="formdata category">
                 <option value="No Category Selected">
                   No Category Selected
@@ -78,10 +78,10 @@ if ($_SESSION['loggedIn'] != true)
         </form>
 
         <form name="projectfiles" id="projectfiles">
-          <fieldset id="source" class="required">
+          <fieldset id="name" class="required">
             <table border="0" cellspacing="9" cellpadding="0">
               <tr>
-                <td colspan="2" class="fields">Source Code
+                <td colspan="2" class="fields">Snippet Name
                   <span class="asterisk">&nbsp;*</span>
                 </td>
               </tr>
@@ -92,14 +92,14 @@ if ($_SESSION['loggedIn'] != true)
                 </td>
               </tr>
                 <tr>
-                  <td class="undertitle">Drive:Path/filename.extension</td>
+                  <td class="undertitle">Name your snippet</td>
                 </tr>
             </table>
           </fieldset>
-          <fieldset id="destination" class="required">
+          <fieldset id="code" class="required">
             <table border="0" cellspacing="9" cellpadding="0">
               <tr>
-                <td colspan="2" class="fields">HTML Destination
+                <td colspan="2" class="fields">Code
                   <span class="asterisk">&nbsp;*</span>
                 </td>
               </tr>
@@ -110,14 +110,14 @@ if ($_SESSION['loggedIn'] != true)
                   </td>
                 </tr>
                 <tr>
-                  <td class="undertitle">Drive:Path/filename.extension</td>
+                  <td class="undertitle">paste your snippet up in here</td>
                 </tr>
             </table>
           </fieldset>
-          <fieldset id="project" class="required">
+          <fieldset id="FK_language" class="required">
             <table border="0" cellspacing="9" cellpadding="0">
               <tr>
-                <td colspan="2" class="fields">Project Name
+                <td colspan="2" class="fields">Language
                   <span class="asterisk">&nbsp;*</span></td>
               </tr>
               <tr>
@@ -128,54 +128,16 @@ if ($_SESSION['loggedIn'] != true)
               </tr>
             </table>
         </fieldset>
-        <fieldset id="name" class="required">
-          <table border="0" cellspacing="9" cellpadding="0">
-            <tr>
-              <td colspan="2" class="fields">Name:
-                <span class="asterisk">&nbsp;*</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="text" class="formdata name" size="84"
-                  value="" />
-              </td>
-            </tr>
-            <tr>
-              <td class="undertitle">
-                A one line encapsulation of the files purpose.
-              </td>
-            </tr>
-          </table>
-        </fieldset>
         <fieldset id="description" class="required">
           <table border="0" cellspacing="9" cellpadding="0">
             <tr>
-              <td colspan="2" class="fields">File Description</td>
+              <td colspan="2" class="fields">Snippet Description</td>
             </tr>
             <tr>
               <td>
                 <textarea type="text" class="formdata description"
                   rows="9" cols="63" value="" >
                 </textarea>
-              </td>
-            </tr>
-          </table>
-        </fieldset>
-        <fieldset id="category" class="required">
-          <table border="0" cellspacing="9" cellpadding="0">
-            <tr>
-              <td colspan="2" class="fields">Category</td>
-            </tr>
-            <tr>
-              <td>
-                <input type="text" class="formdata category" size="84"
-                  value="" />
-              </td>
-            </tr>
-            <tr>
-              <td class="undertitle">
-                A one word clue as to the file type.
               </td>
             </tr>
           </table>
@@ -195,8 +157,7 @@ if ($_SESSION['loggedIn'] != true)
     <script src="../base/carousel.js" type="text/javascript"></script>
     <script src="../base/formhandler.js" type="text/javascript"></script>
     <script src="../base/view.js" type="text/javascript"></script>
-    <script src="../base/validator.js" type="text/javascript"></script>
-    <script src="../controls/projectfilesControl.js"
+    <script src="../controls/codesnippetsControl.js"
       type="text/javascript"></script>
 
     <script>

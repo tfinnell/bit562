@@ -1,10 +1,10 @@
 <?php
 
 // DataPipeFactory.php returns a datapipe object that matches the query asked for.
-include('baseDataPipe.php');
-include('ProjectFileDataPipe.php');
-include('UsersDataPipe.php');
-include('CodeSnippetsDataPipe');
+include_once('baseDataPipe.php');
+include_once('ProjectFileDataPipe.php');
+include_once('UsersDataPipe.php');
+include_once('CodeSnippetsDataPipe.php');
 
 // Any query doing basic CRUD will fall through to the default and use the BaseDataPipe.
 // These queries do one table and one record at a time.
@@ -21,6 +21,7 @@ function dataPipeFactory($mapManager, $dataManager) {
 
         case "codesnippets" :
             $dataPipe = new CodeSnippetsDataPipe($mapManager, $dataManager);
+            break;
 
         case "users" :
             $dataPipe = new UsersDataPipe($mapManager, $dataManager);

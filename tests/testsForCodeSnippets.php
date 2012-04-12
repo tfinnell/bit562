@@ -7,6 +7,7 @@ require_once(dirname(__FILE__).'/../php/baseDataPipe.php');
 require_once(dirname(__FILE__).'/../php/CodeSnippetsDataPipe.php');
 require_once(dirname(__FILE__).'/../php/tableMapManager.php');
 require_once(dirname(__FILE__).'/../php/tableMap.php');
+require_once(dirname(__FILE__).'/../php/DataPipeFactory.php');
 require_once(dirname(__FILE__).'/../php/DBManager.php');
 
 Mock::generate('tableMap');
@@ -23,13 +24,18 @@ class TestsForCodeSnippets extends UnitTestCase {
         $js_exists = file_exists(dirname(__FILE__).
             '/../controls/codesnippetsControl.js');
         $this->assertTrue($js_exists, "Codesnippets Controller exists");
+        $dpFactoryStr = file_get_contents(dirname(__FILE__).
+            '/../php/DataPipeFactory.php');
+        $dpFactoryReg = '/case "codesnippets" :/';
+        $this->assertPattern($dpFactoryReg, $dpFactoryStr);
     }
 
     function testCodeSnippetsObject() {
         $_REQUEST = array(
             'tableName' => 'codeSnippets',
             'tableMap'  => 'codeSnippets',
-            'pipe'      => 'codesnippets'
+            'pipe'      => 'codesnippets',
+            'queryType' => 'select',
         );
         include(dirname(__FILE__).'/../php/db_login.php');
         $db_dsn = "mysql:host={$db_host};".
@@ -39,12 +45,22 @@ class TestsForCodeSnippets extends UnitTestCase {
         $db->open();
         $tm = new TableMapManager($db);
         $snippetsDP = new CodeSnippetsDataPipe($tm, $db);
+        $this->assertIsA($snippetsDP, CodeSnippetsDataPipe);
+        $snippetReflection = new ReflectionObject($snippetsDP);
+        $this->assertIsA($snippetReflection, ReflectionObject);
     }
 }
 
 class TestForCodeSnippetsPage extends WebTestCase {
-#    function testPage() {
-#        $this->get('http://localhost/bit562/forms/codesnippets.html');
-#        $this->assertResponse(200);
-#    }
+    function testPage() {
+        $url = 'http://localhost/bit562/forms/codesnippets.php';
+        $params = array(
+            pipe => 'codesnippets',
+            queryType => 'select',
+            tablename => 'codeSnippets',
+            tableMap => 'codesnippets'
+        );
+        $this->get($url);
+        $this->assertResponse(200);
+    }
 }

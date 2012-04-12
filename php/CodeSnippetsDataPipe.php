@@ -11,15 +11,15 @@
  **********************************************************/
 class CodeSnippetsDataPipe extends baseDataPipe {
 
-    protected $snippet;
+    protected $project;
 
     function __construct($tableMapManager, $dataManager) {
         parent::__construct($tableMapManager, $dataManager);
-        $this->snippet = $_REQUEST['codeSnippets'];
+        $this->project = $_REQUEST['code'];
     }
 
     function where() {
-        return "WHERE code LIKE '%'";
+        return "WHERE code = '".$this->project."'";
     }
-
 }
+
