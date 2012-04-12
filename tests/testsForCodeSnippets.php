@@ -53,7 +53,7 @@ class TestsForCodeSnippets extends UnitTestCase {
 
 class TestForCodeSnippetsPage extends WebTestCase {
     function testPage() {
-        $url = 'http://localhost/bit562/forms/codesnippets.php';
+        $url = 'http://localhost/bit562/forms/login.php';
         $params = array(
             pipe => 'codesnippets',
             queryType => 'select',
@@ -61,6 +61,9 @@ class TestForCodeSnippetsPage extends WebTestCase {
             tableMap => 'codesnippets'
         );
         $this->get($url);
+        $this->clickSubmitById('submit');
+        $this->clickLinkById('codesnippetsForm');
         $this->assertResponse(200);
+        $this->assertTitle('Code Snippets');
     }
 }
