@@ -188,6 +188,7 @@ class BaseDataPipe {
             }
         }
         $values = substr($values, 0, strrpos($values, ", "))." ) ";
+        $this->db->test($sql.$fieldList.$values);
 
         return $sql.$fieldList.$values;
 

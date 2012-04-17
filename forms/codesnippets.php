@@ -77,7 +77,7 @@ if ($_SESSION['loggedIn'] != true)
           </input>
         </form>
 
-        <form name="projectfiles" id="projectfiles">
+        <form name="codeSnippets" id="codeSnippets">
           <fieldset id="name" class="required">
             <table border="0" cellspacing="9" cellpadding="0">
               <tr>
@@ -87,7 +87,7 @@ if ($_SESSION['loggedIn'] != true)
               </tr>
               <tr>
                 <td>
-                  <input type="text" class="formdata source" size="84"
+                  <input type="text" class="formdata name" size="84"
                     value="" />
                 </td>
               </tr>
@@ -105,7 +105,7 @@ if ($_SESSION['loggedIn'] != true)
               </tr>
                 <tr>
                   <td>
-                    <input type="text" class="formdata destination"
+                    <input type="text" class="formdata code"
                       size="84" value="" />
                   </td>
                 </tr>
@@ -122,7 +122,7 @@ if ($_SESSION['loggedIn'] != true)
               </tr>
               <tr>
                 <td>
-                  <input type="text" class="formdata project" size="84"
+                  <input type="text" class="formdata FK_language" size="84"
                     value="" />
                 </td>
               </tr>
@@ -144,6 +144,7 @@ if ($_SESSION['loggedIn'] != true)
         </fieldset>
 
         <input type="hidden" class="formdata object_ID" value=""></input>
+        <input type="hidden" class="formdata authoroid" value=""></input>
 
        </form>
       </div>

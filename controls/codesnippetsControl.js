@@ -40,15 +40,15 @@
 
     // Display the first data value or a clear screen.
     if ( filenames.length > 0 ) {
-      $F.present("projectfiles", filenames[0]);
+      $F.present("codeSnippets", filenames[0]);
     } else {
-      $F.clearForm("projectfiles");
+      $F.clearForm("codeSnippets");
     }
 
     // Establish the carousel and set its events.
     $C.setC(filenames);
-    $C.setSelect("fileselect", $C.getC(), "projectfiles", "name");
-    $C.makeEventHandlers("filecontrol", "projectfiles", $PF.bailout );
+    $C.setSelect("fileselect", $C.getC(), "codeSnippets", "name");
+    $C.makeEventHandlers("filecontrol", "codeSnippets", $PF.bailout );
 
     // Put an event on the category selector.
     $("#selectFileCategory")

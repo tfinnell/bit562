@@ -19,7 +19,7 @@ class CodeSnippetsDataPipe extends baseDataPipe {
     }
 
     function where() {
-        return "WHERE code = '".$this->project."'";
+        return "WHERE code LIKE '%'";
     }
 }
 
